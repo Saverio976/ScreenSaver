@@ -13,6 +13,9 @@
 
     #define BG_COLOR sfBlack
 
+// create a moutarde color :
+// sfColor_fromRGB(232, 185, 18)
+
 struct screen_struct {
     int (*fptr)(unsigned int, unsigned int);
 };
