@@ -11,6 +11,6 @@ unsigned int get_urandom_between(int a, int b)
 {
     int i = rand();
 
-    i = i % b;
+    i = i % (b + 1);
     return ((unsigned int) i + a);
 }
