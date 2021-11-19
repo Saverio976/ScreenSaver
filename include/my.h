@@ -15,5 +15,6 @@ int my_putnbr(int nb);
 unsigned int get_urandom_between(int, int);
 int get_random_between(int, int);
 int my_getnbr(char const *);
+char *my_calloc(int);
 
 #endif
