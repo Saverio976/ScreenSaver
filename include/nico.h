@@ -8,7 +8,7 @@
 #ifndef NICO_H_
     #define NICO_H_
 
-    #define IMAGE_DVD_NICO "assets/nico.bmp"
+    #define IMAGE_DVD "assets/nico.bmp"
 
 struct image_struct {
     sfVector2i pos;
