@@ -11,6 +11,6 @@ int get_random_between(int a, int b)
 {
     int i = rand();
 
-    i = i % b;
+    i = i % (b + 1);
     return (i + a);
 }
