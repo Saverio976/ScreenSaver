@@ -11,8 +11,12 @@ PREFIX 	= 	src/
 
 MAIN 	= 	$(PREFIX)main.c
 
-SRC 	= 	$(PREFIX)circles.c 		\
-		$(PREFIX)circles_next.c
+SRC 	= 	$(PREFIX)circles/circles.c 		\
+		$(PREFIX)circles/circles_next.c 	\
+		$(PREFIX)snow/snow.c 			\
+		$(PREFIX)spawn/spawn.c 			\
+		$(PREFIX)spawn/draw_a.c 		\
+		$(PREFIX)nico/nico.c
 
 OBJ 	= 	$(SRC:.c=.o)
 
@@ -27,7 +31,7 @@ LFLAGS 	= 	-L$(LPREFIX) -lall -lcsfml-graphics -lm -lcsfml-system
 # ----------------------------------------------------------------------------
 
 all: 		build_lib $(OBJ)
-	gcc -o test $(MAIN) $(OBJ) $(LFLAGS) $(CFLAGS)
+	gcc -o $(NAME) $(MAIN) $(OBJ) $(LFLAGS) $(CFLAGS)
 
 $(NAME): 	all
 
