@@ -47,7 +47,8 @@ static int check_malloc_sprite(context_t *ctx)
     return (0);
 }
 
-context_t *context_t_init(char const *t, unsigned int w, unsigned int h)
+context_t *context_t_init(char const *t, unsigned int w, unsigned int h,
+        sfColor color)
 {
     sfVideoMode mode = {w, h, 32};
     context_t *ctx = malloc(sizeof(context_t));
@@ -66,6 +67,7 @@ context_t *context_t_init(char const *t, unsigned int w, unsigned int h)
     ctx->sprite = sfSprite_create();
     if (!check_malloc_sprite(ctx))
         return (NULL);
+    framebuffer_t_clear(ctx->buffer, color);
     sfSprite_setTexture(ctx->sprite, ctx->texture, sfTrue);
     return (ctx);
 }

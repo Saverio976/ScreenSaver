@@ -34,7 +34,7 @@ struct context_struct {
 };
 typedef struct context_struct context_t;
 
-context_t *context_t_init(char const *, unsigned int, unsigned int);
+context_t *context_t_init(char const *, unsigned int, unsigned int, sfColor);
 void context_t_destroy(context_t *);
 
 // figures
