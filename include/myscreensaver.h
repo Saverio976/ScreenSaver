@@ -16,5 +16,8 @@ struct screen_struct {
 };
 
 int screen_circles(unsigned int, unsigned int);
+int screen_snow(unsigned int, unsigned int);
+int screen_spawn(unsigned int, unsigned int);
+int screen_nico(unsigned int, unsigned int);
 
 #endif
