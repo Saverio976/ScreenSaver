@@ -19,4 +19,6 @@ struct lines_struct {
 };
 typedef struct lines_struct lines_t;
 
+void destroy_main(context_t *, lines_t **, sfClock *);
+
 #endif
