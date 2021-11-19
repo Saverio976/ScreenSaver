@@ -11,7 +11,7 @@
     #include <SFML/Graphics.h>
     #include "graphics.h"
 
-    #define BG_COLOR sfRed
+    #define BG_COLOR sfBlack
 
 struct screen_struct {
     int (*fptr)(unsigned int, unsigned int);
