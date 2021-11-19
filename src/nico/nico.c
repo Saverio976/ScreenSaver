@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics.h>
 #include <stdlib.h>
+#include "myscreensaver.h"
 #include "graphics.h"
 #include "bitmap.h"
 #include "nico.h"
@@ -32,17 +33,14 @@ static void update_pos(context_t *ctx, bitmap_t *bmp, image_t *positions)
     sfRenderWindow_drawSprite(ctx->win, ctx->sprite, NULL);
 }
 
-static void do_event(context_t *ctx, bitmap_t *bmp, image_t *positions,
+static int do_event(context_t *ctx, bitmap_t *bmp, image_t *positions,
                         sfClock *clock)
 {
-    static sfEvent event;
     static float seconds;
+    int ret_code = master_event(ctx);
 
-    while (sfRenderWindow_pollEvent(ctx->win, &event))
-        if (event.type == sfEvtClosed)
-            sfRenderWindow_close(ctx->win);
     seconds = sfClock_getElapsedTime(clock).microseconds / 1000000.0;
-    sfRenderWindow_clear(ctx->win, sfBlack);
+    sfRenderWindow_clear(ctx->win, BG_COLOR);
     if (seconds > 1.0 / 64.0) {
         sfTexture_updateFromPixels(ctx->texture, ctx->buffer->pixels,
                                     ctx->buffer->w, ctx->buffer->h, 0, 0);
@@ -51,6 +49,7 @@ static void do_event(context_t *ctx, bitmap_t *bmp, image_t *positions,
     }
     sfRenderWindow_drawSprite(ctx->win, ctx->sprite, NULL);
     sfRenderWindow_display(ctx->win);
+    return (ret_code);
 }
 
 static void destroy_all(context_t *ctx, bitmap_t *bmp, image_t *pos,
@@ -72,7 +71,7 @@ static int init_all(bitmap_t **bmp, image_t **pos, unsigned int w,
     int i_x = get_random_between(0, 1);
     int i_y = get_random_between(0, 1);
 
-    *bmp = bitmap_t_create(IMAGE_DVD_NICO);
+    *bmp = bitmap_t_create(IMAGE_DVD);
     if (!(*bmp))
         return (0);
     *pos = malloc(sizeof(image_t));
@@ -87,10 +86,11 @@ static int init_all(bitmap_t **bmp, image_t **pos, unsigned int w,
 
 int screen_nico(unsigned int w, unsigned int h)
 {
-    context_t *ctx = context_t_init("MYSCREENSAVER - nico - 4", w, h);
+    context_t *ctx = context_t_init("MYSCREENSAVER-nico-4", w, h, BG_COLOR);
     bitmap_t *bmp;
     image_t *positions;
     sfClock *clock;
+    int ret_code;
 
     if (!ctx)
         return (84);
@@ -102,7 +102,7 @@ int screen_nico(unsigned int w, unsigned int h)
         return (84);
     }
     while (sfRenderWindow_isOpen(ctx->win))
-        do_event(ctx, bmp, positions, clock);
+        ret_code = do_event(ctx, bmp, positions, clock);
     destroy_all(ctx, bmp, positions, clock);
-    return (0);
+    return (ret_code);
 }

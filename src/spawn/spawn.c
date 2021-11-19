@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics.h>
 #include <stdlib.h>
+#include "myscreensaver.h"
 #include "graphics.h"
 #include "circles.h"
 #include "spawn.h"
@@ -58,32 +59,31 @@ static void update_alphas(context_t *ctx, alpha_t **alphas,
     sfClock_restart(clock);
 }
 
-static void do_event(context_t *ctx, sfClock *clock, alpha_t **alphas,
+static int do_event(context_t *ctx, sfClock *clock, alpha_t **alphas,
                         sfClock *clock_refresh)
 {
-    static sfEvent event;
     static float seconds;
+    int ret_code = master_event(ctx);
 
-    while (sfRenderWindow_pollEvent(ctx->win, &event))
-        if (event.type == sfEvtClosed)
-            sfRenderWindow_close(ctx->win);
     seconds = sfClock_getElapsedTime(clock).microseconds / 1000000.0;
     if (seconds > 1.0 / 2.0)
         update_alphas(ctx, alphas, clock);
     seconds = sfClock_getElapsedTime(clock_refresh).microseconds / 1000000.0;
     if (seconds > 5.0) {
-        framebuffer_t_clear(ctx->buffer, sfBlack);
+        framebuffer_t_clear(ctx->buffer, BG_COLOR);
         sfClock_restart(clock_refresh);
     }
     sfRenderWindow_display(ctx->win);
+    return (ret_code);
 }
 
 int screen_spawn(unsigned int w, unsigned int h)
 {
-    context_t *ctx = context_t_init("MYSCREENSAVER - spawn - 3", w, h);
+    context_t *ctx = context_t_init("MYSCREENSAVER-spawn-3", w, h, BG_COLOR);
     sfClock *clock;
     sfClock *clock_refresh;
     alpha_t **alphas;
+    int ret_code;
 
     if (!ctx)
         return (84);
@@ -92,9 +92,9 @@ int screen_spawn(unsigned int w, unsigned int h)
         return (84);
     alphas = alpha_t_create(w, h);
     while (sfRenderWindow_isOpen(ctx->win))
-        do_event(ctx, clock, alphas, clock_refresh);
+        ret_code = do_event(ctx, clock, alphas, clock_refresh);
     context_t_destroy(ctx);
     destroy_2_clock(clock, clock_refresh);
     alpha_t_destroy(alphas);
-    return (0);
+    return (ret_code);
 }

@@ -8,6 +8,7 @@
 #include <SFML/Graphics.h>
 #include <stdlib.h>
 #include "graphics.h"
+#include "myscreensaver.h"
 #include "my.h"
 #include "circles.h"
 
@@ -30,15 +31,6 @@ static circles_t **circles_t_create(unsigned int w, unsigned int h)
         circles[i]->color = default_colors[get_random_between(0, 100) % 7];
     }
     return (circles);
-}
-
-static void circles_t_destroy(circles_t **circles)
-{
-    for (int i = 0; circles[i] != NULL; i++) {
-        free(circles[i]->pos);
-        free(circles[i]);
-    }
-    free(circles);
 }
 
 void update_circles(framebuffer_t *buffer, circles_t **circles,
@@ -65,16 +57,13 @@ void update_circles(framebuffer_t *buffer, circles_t **circles,
     sfClock_restart(clock);
 }
 
-static void do_event(context_t *ctx, circles_t **circles,
+static int do_event(context_t *ctx, circles_t **circles,
                         sfClock *clock_screen, sfClock *clock_update)
 {
-    static sfEvent event;
     static float seconds1;
     static float seconds2;
+    int ret_code = master_event(ctx);
 
-    while (sfRenderWindow_pollEvent(ctx->win, &event))
-        if (event.type == sfEvtClosed)
-            sfRenderWindow_close(ctx->win);
     seconds1 = sfClock_getElapsedTime(clock_screen).microseconds / 1000000.0;
     seconds2 = sfClock_getElapsedTime(clock_update).microseconds / 1000000.0;
     if (seconds1 > 5.0)
@@ -86,14 +75,16 @@ static void do_event(context_t *ctx, circles_t **circles,
     }
     sfRenderWindow_drawSprite(ctx->win, ctx->sprite, NULL);
     sfRenderWindow_display(ctx->win);
+    return (ret_code);
 }
 
 int screen_circles(unsigned int w, unsigned int h)
 {
     sfClock *clock_screen;
     sfClock *clock_update;
-    context_t *ctx = context_t_init("MYSCREENSAVER - circles - 1", w, h);
+    context_t *ctx = context_t_init("MYSCREENSAVER-circles-1", w, h, BG_COLOR);
     circles_t **circles = NULL;
+    int ret_code;
 
     if (!ctx)
         return (84);
@@ -105,9 +96,7 @@ int screen_circles(unsigned int w, unsigned int h)
         return (84);
     sfRenderWindow_setFramerateLimit(ctx->win, 30);
     while (sfRenderWindow_isOpen(ctx->win))
-        do_event(ctx, circles, clock_screen, clock_update);
-    context_t_destroy(ctx);
-    circles_t_destroy(circles);
-    destroy_2_clock(clock_screen, clock_update);
-    return (0);
+        ret_code = do_event(ctx, circles, clock_screen, clock_update);
+    destroy_circles(ctx, circles, clock_screen, clock_update);
+    return (ret_code);
 }

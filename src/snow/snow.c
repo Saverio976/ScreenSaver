@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics.h>
 #include <stdlib.h>
+#include "myscreensaver.h"
 #include "graphics.h"
 #include "snow.h"
 #include "my.h"
@@ -32,16 +33,6 @@ static lines_t **lines_t_create(unsigned int w, unsigned int h)
     return (lines);
 }
 
-static void lines_t_destroy(lines_t **lines)
-{
-    for (int i = 0; lines[i] != NULL; i++) {
-        free(lines[i]->start);
-        free(lines[i]->end);
-        free(lines[i]);
-    }
-    free(lines);
-}
-
 void update_lines(framebuffer_t *buffer, lines_t **lines, sfClock *clock_frame)
 {
     for (int i = 0; lines[i] != NULL; i++) {
@@ -57,30 +48,29 @@ void update_lines(framebuffer_t *buffer, lines_t **lines, sfClock *clock_frame)
     sfClock_restart(clock_frame);
 }
 
-static void do_event(context_t *ctx, lines_t **lines, sfClock *clock_frame)
+static int do_event(context_t *ctx, lines_t **lines, sfClock *clock_frame)
 {
-    static sfEvent event;
     static float seconds;
+    int ret_code = master_event(ctx);
 
-    while (sfRenderWindow_pollEvent(ctx->win, &event))
-        if (event.type == sfEvtClosed)
-            sfRenderWindow_close(ctx->win);
     seconds = sfClock_getElapsedTime(clock_frame).microseconds / 1000000.0;
     if (seconds > 1.0 / 20.0) {
-        framebuffer_t_clear(ctx->buffer, sfBlack);
+        framebuffer_t_clear(ctx->buffer, BG_COLOR);
         update_lines(ctx->buffer, lines, clock_frame);
         sfTexture_updateFromPixels(ctx->texture, ctx->buffer->pixels,
                                     ctx->buffer->w, ctx->buffer->h, 0, 0);
         sfRenderWindow_drawSprite(ctx->win, ctx->sprite, NULL);
     }
     sfRenderWindow_display(ctx->win);
+    return (ret_code);
 }
 
 int screen_snow(unsigned int w, unsigned int h)
 {
     sfClock *clock_frame;
-    context_t *ctx = context_t_init("MYSCREENSAVER - snow - 2", w, h);
+    context_t *ctx = context_t_init("MYSCREENSAVER-snow-2", w, h, BG_COLOR);
     lines_t **lines;
+    int ret_code;
 
     if (!ctx)
         return (84);
@@ -92,9 +82,7 @@ int screen_snow(unsigned int w, unsigned int h)
         return (84);
     sfRenderWindow_setFramerateLimit(ctx->win, 30);
     while (sfRenderWindow_isOpen(ctx->win))
-        do_event(ctx, lines, clock_frame);
-    context_t_destroy(ctx);
-    lines_t_destroy(lines);
-    sfClock_destroy(clock_frame);
-    return (0);
+        ret_code = do_event(ctx, lines, clock_frame);
+    destroy_main(ctx, lines, clock_frame);
+    return (ret_code);
 }
