@@ -10,9 +10,12 @@
 #include "myscreensaver.h"
 #include "my.h"
 
-static const int ID_MAX = 1;
-static const struct screen_struct SCREENS[1] = {
-    {&screen_circles}
+static const int ID_MAX = 4;
+static const struct screen_struct SCREENS[4] = {
+    {&screen_circles},
+    {&screen_snow},
+    {&screen_spawn},
+    {&screen_nico}
 };
 
 static int print_help(char const *exe)
@@ -29,7 +32,7 @@ static int print_help(char const *exe)
     my_putstr("\n\nUSER INTERACTIONS\n\tLEFT_ARROW\tswitch to the ");
     my_putstr("previous animation.\n\tRIGHT_ARROW\tsitch to the next");
     my_putstr(" annimation.\n");
-    return (84);
+    return (0);
 }
 
 int main(int ac, char **av)
