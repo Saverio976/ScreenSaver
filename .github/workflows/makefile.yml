@@ -1,0 +1,28 @@
+name: Makefile Check
+
+on: [push]
+
+jobs:
+  norm:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: install preprerequisites
+      run: sudo ./.github/workflows/install_criterion.sh
+
+    - name: make
+      run: make
+
+    - name: make re
+      run: make re
+
+    - name: make fclean
+      run: make fclean
+
+    - name: make all
+      run: make all
+
+    - name: make clean
+      run: make clean

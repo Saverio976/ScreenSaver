@@ -1,0 +1,22 @@
+name: NormEZ Check
+
+on: [push]
+
+jobs:
+  norm:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: install ruby
+      run: sudo apt-get install ruby
+
+    - name: clone NormEZ
+      run: git clone https://github.com/ronanboiteau/NormEZ
+
+    - name: move normez.rb and rm folder
+      run: mv NormEZ/NormEZ.rb .; rm -rf NormEZ/; rm -rf tests/
+
+    - name: NormEZ
+      run: ruby NormEZ.rb && exit 0
