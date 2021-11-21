@@ -26,10 +26,16 @@ SCREEN3 = 	$(PREFIX)spawn/spawn.c 		\
 SCREEN4 = 	$(PREFIX)nico/nico.c 		\
 		$(PREFIX)nico/explain.c
 
+SCREEN5 = 	$(PREFIX)bubulles/bubulles.c 	\
+		$(PREFIX)bubulles/circles_t_iscolide.c 	\
+		$(PREFIX)bubulles/draw_plain_circle.c 	\
+		$(PREFIX)bubulles/explain.c
+
 SRC 	= 	$(SCREEN1) 			\
 		$(SCREEN2) 			\
 		$(SCREEN3) 			\
 		$(SCREEN4) 			\
+		$(SCREEN5) 			\
 		$(PREFIX)master_event.c 	\
 		$(PREFIX)cmd_functions.c
 
