@@ -26,6 +26,6 @@ void draw_circles(framebuffer_t *, circles_t **);
 void create_2_clock(sfClock **, sfClock **);
 void destroy_2_clock(sfClock *, sfClock *);
 void update_circles(framebuffer_t *, circles_t **, sfClock *);
-void re_init_framebuffer(context_t *, circles_t **,sfClock *, sfClock *);
+void re_init_framebuffer(context_t *, circles_t **, sfClock *, sfClock *);
 
 #endif
