@@ -10,7 +10,8 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: install preprerequisites
-      run: sudo ./.github/workflows/install_criterion.sh;
+      run: sudo apt install cmake;
+            sudo ./.github/workflows/install_criterion.sh;
             sudo ./.github/workflows/build_csfml.sh
 
     - name: make
