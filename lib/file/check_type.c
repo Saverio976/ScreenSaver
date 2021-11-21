@@ -10,6 +10,7 @@
 //check if a path is of type :
 // d : directory
 // f : file
+
 int is_file(char const *path, char perm)
 {
     struct stat info;

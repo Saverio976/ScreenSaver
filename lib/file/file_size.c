@@ -10,6 +10,7 @@
 // return teh nbyte of a file
 // -1 : stat() error
 // other : file size
+
 int file_size(char const *path)
 {
     struct stat info;

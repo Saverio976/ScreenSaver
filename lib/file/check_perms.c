@@ -12,6 +12,7 @@
 // r : read
 // w : write
 // x : execute
+
 int has_file_perm(char const *path, char perm)
 {
     struct stat info;
