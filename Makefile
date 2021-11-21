@@ -30,7 +30,8 @@ SRC 	= 	$(SCREEN1) 			\
 		$(SCREEN2) 			\
 		$(SCREEN3) 			\
 		$(SCREEN4) 			\
-		$(PREFIX)master_event.c
+		$(PREFIX)master_event.c 	\
+		$(PREFIX)cmd_functions.c
 
 OBJ 	= 	$(SRC:.c=.o)
 

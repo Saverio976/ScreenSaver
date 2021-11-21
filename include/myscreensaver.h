@@ -35,4 +35,8 @@ void explain_snow(void);
 void explain_spawn(void);
 void explain_nico(void);
 
+int print_bad_args(char const *);
+int print_h(char const *, int);
+int print_bad_id(char const *, int);
+
 #endif
