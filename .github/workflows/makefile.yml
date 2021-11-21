@@ -11,7 +11,8 @@ jobs:
 
     - name: install preprerequisites
       run: sudo ./.github/workflows/install_criterion.sh;
-            sudo apt-get install libcsfml
+            sudo apt-get update -y;
+            sudo apt-get install libcsfml-dev -y
 
     - name: make
       run: make
