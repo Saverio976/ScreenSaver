@@ -29,11 +29,13 @@ int screen_circles(unsigned int, unsigned int);
 int screen_snow(unsigned int, unsigned int);
 int screen_spawn(unsigned int, unsigned int);
 int screen_nico(unsigned int, unsigned int);
+int screen_bubulles(unsigned int, unsigned int);
 
 void explain_circles(void);
 void explain_snow(void);
 void explain_spawn(void);
 void explain_nico(void);
+void explain_bubulles(void);
 
 int print_bad_args(char const *);
 int print_h(char const *, int);
