@@ -60,8 +60,8 @@ void update_circles(framebuffer_t *buffer, circles_t **circles,
 static int do_event(context_t *ctx, circles_t **circles,
                         sfClock *clock_screen, sfClock *clock_update)
 {
-    static float seconds1;
-    static float seconds2;
+    float seconds1;
+    float seconds2;
     int ret_code = master_event(ctx);
 
     seconds1 = sfClock_getElapsedTime(clock_screen).microseconds / 1000000.0;
