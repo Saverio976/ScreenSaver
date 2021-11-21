@@ -61,9 +61,10 @@ void draw_circle(framebuffer_t *buffer, sfVector2i center, int radius,
     int condition = 0;
     int end_y = center.y + radius + 1;
     int end_x = center.x + radius + 1;
+    int start_x = center.x - radius;
 
     for (int y = center.y - radius; y < end_y && y < (int) buffer->h; y++) {
-        for (int x = center.x - radius; x < end_x && y < (int) buffer->w; x++) {
+        for (int x = start_x; x < end_x && y < (int) buffer->w; x++) {
             position.x = (unsigned int) x;
             position.y = (unsigned int) y;
             calc = pow(x - center.x, 2) + pow(y - center.y, 2);
