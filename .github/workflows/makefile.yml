@@ -3,7 +3,7 @@ name: Makefile Check
 on: [push]
 
 jobs:
-  norm:
+  makefile:
     runs-on: ubuntu-latest
 
     steps:
