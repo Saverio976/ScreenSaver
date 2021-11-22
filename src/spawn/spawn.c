@@ -55,7 +55,6 @@ static void update_alphas(context_t *ctx, alpha_t **alphas,
     }
     sfTexture_updateFromPixels(ctx->texture, ctx->buffer->pixels,
                                 ctx->buffer->w, ctx->buffer->h, 0, 0);
-    sfRenderWindow_drawSprite(ctx->win, ctx->sprite, NULL);
     sfClock_restart(clock);
 }
 
@@ -73,6 +72,7 @@ static int do_event(context_t *ctx, sfClock *clock, alpha_t **alphas,
         framebuffer_t_clear(ctx->buffer, BG_COLOR);
         sfClock_restart(clock_refresh);
     }
+    sfRenderWindow_drawSprite(ctx->win, ctx->sprite, NULL);
     sfRenderWindow_display(ctx->win);
     return (ret_code);
 }
