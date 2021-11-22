@@ -24,7 +24,7 @@ void circles_t_remove_from_out(circles_t *c, framebuffer_t *buf)
         }
         c->pos->x += c->moove_x;
         c->pos->y += c->moove_y;
-   }
+    }
 }
 
 static void mult_minus_all(circles_t *c1, circles_t *c2)
