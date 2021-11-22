@@ -79,7 +79,7 @@ static int do_event(context_t *ctx, sfClock *clock, alpha_t **alphas,
 
 int screen_spawn(unsigned int w, unsigned int h)
 {
-    context_t *ctx = context_t_init("MYSCREENSAVER-spawn-3", w, h, BG_COLOR);
+    context_t *ctx = context_t_init("SCREENSAVER spawn 3", w, h, BG_COLOR);
     sfClock *clock;
     sfClock *clock_refresh;
     alpha_t **alphas;
