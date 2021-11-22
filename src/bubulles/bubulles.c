@@ -17,19 +17,19 @@ static circles_t **circles_t_create(unsigned int w, unsigned int h)
 {
     sfColor default_colors[8] = {sfBlue, sfCyan, sfGreen,
                                 sfMagenta, sfRed, sfWhite, sfYellow};
-    circles_t **circles = malloc(sizeof(circles_t *) * 8);
+    circles_t **circles = malloc(sizeof(circles_t *) * 11);
     int radius;
 
-    circles[7] = NULL;
-    for (int i = 0; i < 7; i++) {
+    circles[10] = NULL;
+    for (int i = 0; i < 10; i++) {
         circles[i] = malloc(sizeof(circles_t));
-        radius = get_random_between(20, 50) * 5;
+        radius = get_random_between(40, 80) * 5;
         circles[i]->radius = radius / 5;
         circles[i]->pos = malloc(sizeof(sfVector2i));
         circles[i]->pos->x = get_urandom_between(0 + radius, w - radius);
         circles[i]->pos->y = get_urandom_between(0 + radius, h - radius);
-        circles[i]->moove_x = get_random_between(-5, 10);
-        circles[i]->moove_y = get_random_between(-5, 10);
+        circles[i]->moove_x = get_random_between(-10, 20);
+        circles[i]->moove_y = get_random_between(-10, 20);
         circles[i]->grow = get_random_between(10, 15);
         circles[i]->color = default_colors[get_random_between(0, 100) % 7];
     }
@@ -52,19 +52,15 @@ static void destroy_bubulles(context_t *ctx, circles_t **circles,
 static void update_circles_bubulles(context_t *ctx, circles_t **circles,
         sfClock *clock)
 {
+    int index = 0;
+
     for (int i = 0; circles[i] != NULL; i++) {
         circles[i]->pos->x += circles[i]->moove_x;
         circles[i]->pos->y += circles[i]->moove_y;
-        if (circles_t_isout_x(circles[i], ctx->buffer))
-            circles[i]->moove_x *= -1;
-        if (circles_t_isout_y(circles[i], ctx->buffer))
-            circles[i]->moove_y *= -1;
-        if (circles_t_iscolide(circles, i) >= 0) {
-            circles[i]->moove_x *= -1;
-            circles[i]->moove_y *= -1;
-            circles[circles_t_iscolide(circles, i)]->moove_x *= -1;
-            circles[circles_t_iscolide(circles, i)]->moove_y *= -1;
-        }
+        circles_t_remove_from_out(circles[i], ctx->buffer);
+        index = circles_t_iscolide(circles, i);
+        if (index >= 0)
+            circles_t_update_colision(circles[index], circles[i]);
     }
     sfClock_restart(clock);
 }
@@ -76,7 +72,7 @@ static int do_event(context_t *ctx, circles_t **circles, sfClock *clock,
     float seconds;
 
     seconds = sfClock_getElapsedTime(clock_moove).microseconds / 1000000.0;
-    if (seconds > 1.0 / 160.0)
+    if (seconds > 1.0 / 120.0)
         update_circles_bubulles(ctx, circles, clock_moove);
     seconds = sfClock_getElapsedTime(clock).microseconds / 1000000.0;
     if (seconds > 1.0 / 60.0) {
