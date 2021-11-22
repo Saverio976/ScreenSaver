@@ -24,13 +24,13 @@ static circles_t **circles_t_create(unsigned int w, unsigned int h)
     for (int i = 0; i < 10; i++) {
         circles[i] = malloc(sizeof(circles_t));
         radius = get_random_between(40, 80) * 5;
-        circles[i]->radius = radius / 5;
+        circles[i]->radius = (radius / 5);
         circles[i]->pos = malloc(sizeof(sfVector2i));
-        circles[i]->pos->x = get_urandom_between(0 + radius, w - radius);
-        circles[i]->pos->y = get_urandom_between(0 + radius, h - radius);
+        circles[i]->pos->x = get_random_between(0 + radius, w - radius * 2);
+        circles[i]->pos->y = get_random_between(0 + radius, h - radius * 2);
         circles[i]->moove_x = get_random_between(-10, 20);
         circles[i]->moove_y = get_random_between(-10, 20);
-        circles[i]->grow = get_random_between(10, 15);
+        circles[i]->grow = 10;
         circles[i]->color = default_colors[get_random_between(0, 100) % 7];
     }
     return (circles);
@@ -72,10 +72,10 @@ static int do_event(context_t *ctx, circles_t **circles, sfClock *clock,
     float seconds;
 
     seconds = sfClock_getElapsedTime(clock_moove).microseconds / 1000000.0;
-    if (seconds > 1.0 / 120.0)
+    if (seconds > 1.0 / 100.0)
         update_circles_bubulles(ctx, circles, clock_moove);
     seconds = sfClock_getElapsedTime(clock).microseconds / 1000000.0;
-    if (seconds > 1.0 / 60.0) {
+    if (seconds > 1.0 / 90.0) {
         framebuffer_t_clear(ctx->buffer, sfBlack);
         draw_all_circles(ctx, circles, clock);
         sfTexture_updateFromPixels(ctx->texture, ctx->buffer->pixels,
@@ -88,7 +88,7 @@ static int do_event(context_t *ctx, circles_t **circles, sfClock *clock,
 
 int screen_bubulles(unsigned int w, unsigned int h)
 {
-    context_t *ctx = context_t_init("MYSCREENSAVER-bubulles-5", w, h, sfBlack);
+    context_t *ctx = context_t_init("SCREENSAVER bubulles 5", w, h, sfBlack);
     int ret_code;
     circles_t **circles;
     sfClock *clock_moove;
