@@ -9,11 +9,7 @@ NAME 		= 	libfile.a
 
 HPREFIX 	= 	../../include/
 
-SRC 		= 	check_perms.c 		\
-			check_type.c 		\
-			open_ronly.c 		\
-			file_size.c 		\
-			fs_get_content.c
+SRC 		= 	open_ronly.c 		\
 
 OBJ 		= 	$(SRC:.c=.o)
 
