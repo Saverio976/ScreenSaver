@@ -39,6 +39,7 @@ void draw_plain_circle(framebuffer_t *buffer, sfVector2i center, int radius,
     int end_y = center.y + radius + 1;
     int end_x = center.x + radius + 1;
     int start_x = center.x - radius;
+    sfColor tmpcolor = color;
 
     for (int y = center.y - radius; y < end_y && y < (int) buffer->h; y++) {
         for (int x = start_x; x < end_x && y < (int) buffer->w; x++) {
@@ -46,7 +47,10 @@ void draw_plain_circle(framebuffer_t *buffer, sfVector2i center, int radius,
             position.y = (unsigned int) y;
             calc = pow(x - center.x, 2) + pow(y - center.y, 2);
             condition = calc <= pow(radius, 2) + radius * 2;
-            do_condition_circle(buffer, position, condition, color);
+            tmpcolor.r = (color.r - x - y * (radius * 2)) % 255;
+            tmpcolor.r = (color.g - x - y * (radius * 2)) % 255;
+            tmpcolor.r = (color.b - x - y * (radius * 2)) % 255;
+            do_condition_circle(buffer, position, condition, tmpcolor);
         }
     }
 }
