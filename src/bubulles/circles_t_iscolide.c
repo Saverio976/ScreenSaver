@@ -21,7 +21,7 @@ int circles_t_iscolide(circles_t **circles, int index)
         dist = pow(circles[i]->pos->x - circles[index]->pos->x, 2) +
             pow(circles[i]->pos->y - circles[index]->pos->y, 2);
         rad = pow(circles[i]->radius + circles[index]->radius, 2) +
-            circles[index]->radius * 2;
+            circles[index]->radius;
         if (dist <= rad)
             is_colide = i;
     }
