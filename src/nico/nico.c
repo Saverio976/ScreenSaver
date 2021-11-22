@@ -86,7 +86,7 @@ static int init_all(bitmap_t **bmp, image_t **pos, unsigned int w,
 
 int screen_nico(unsigned int w, unsigned int h)
 {
-    context_t *ctx = context_t_init("MYSCREENSAVER-nico-4", w, h, BG_COLOR);
+    context_t *ctx = context_t_init("SCREENSAVER nico 4", w, h, BG_COLOR);
     bitmap_t *bmp;
     image_t *positions;
     sfClock *clock;
