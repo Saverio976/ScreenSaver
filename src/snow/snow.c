@@ -68,7 +68,7 @@ static int do_event(context_t *ctx, lines_t **lines, sfClock *clock_frame)
 int screen_snow(unsigned int w, unsigned int h)
 {
     sfClock *clock_frame;
-    context_t *ctx = context_t_init("SCREENSAVER snow 2", w, h, BG_COLOR);
+    context_t *ctx = context_t_init("snow-2", w, h, BG_COLOR);
     lines_t **lines;
     int ret_code;
 

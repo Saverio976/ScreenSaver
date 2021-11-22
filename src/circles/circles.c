@@ -82,7 +82,7 @@ int screen_circles(unsigned int w, unsigned int h)
 {
     sfClock *clock_screen;
     sfClock *clock_update;
-    context_t *ctx = context_t_init("SCREENSAVER circles 1", w, h, BG_COLOR);
+    context_t *ctx = context_t_init("circles-1", w, h, BG_COLOR);
     circles_t **circles = NULL;
     int ret_code;
 

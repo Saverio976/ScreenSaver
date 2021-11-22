@@ -88,7 +88,7 @@ static int do_event(context_t *ctx, circles_t **circles, sfClock *clock,
 
 int screen_bubulles(unsigned int w, unsigned int h)
 {
-    context_t *ctx = context_t_init("SCREENSAVER bubulles 5", w, h, sfBlack);
+    context_t *ctx = context_t_init("bubulles-5", w, h, sfBlack);
     int ret_code;
     circles_t **circles;
     sfClock *clock_moove;
