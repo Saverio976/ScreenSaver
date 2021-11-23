@@ -30,20 +30,18 @@ int circles_t_iscolide(circles_t **circles, int index)
 
 int circles_t_isout_x(circles_t *circle, framebuffer_t *buffer)
 {
-    if (circle->pos->x - circle->radius <= 0 + circle->radius / 2)
+    if (circle->pos->x - circle->radius <= 0)
         return (1);
-    if (circle->pos->x + circle->radius >=
-            (int) buffer->w - circle->radius / 2)
+    if (circle->pos->x + circle->radius >= (int) buffer->w)
         return (1);
     return (0);
 }
 
 int circles_t_isout_y(circles_t *circle, framebuffer_t *buffer)
 {
-    if (circle->pos->y - circle->radius <= 0 + circle->radius / 2)
+    if (circle->pos->y - circle->radius <= 0)
         return (1);
-    if (circle->pos->y + circle->radius >=
-            (int) buffer->h - circle->radius / 2)
+    if (circle->pos->y + circle->radius >= (int) buffer->h)
         return (1);
     return (0);
 }
