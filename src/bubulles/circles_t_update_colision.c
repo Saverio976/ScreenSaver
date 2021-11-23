@@ -24,6 +24,10 @@ void circles_t_remove_from_out(circles_t *c, framebuffer_t *buf)
         }
         c->pos->x += c->moove_x;
         c->pos->y += c->moove_y;
+        if (c->pos->y - c->radius > (int) buf->h || c->pos->y < 0 - c->radius)
+            c->pos->y = buf->h / 2;
+        if (c->pos->x - c->radius > (int) buf->w || c->pos->x < 0 - c->radius)
+            c->pos->x = buf->w / 2;
     }
 }
 
