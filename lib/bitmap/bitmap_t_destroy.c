@@ -14,6 +14,8 @@ void bitmap_t_destroy(bitmap_t *bmp)
         free(bmp->header);
     if (bmp->info)
         free(bmp->info);
+    if (bmp->pixels)
+        free(bmp->pixels);
     if (bmp)
         free(bmp);
 }

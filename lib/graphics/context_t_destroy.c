@@ -6,6 +6,7 @@
 */
 
 #include <SFML/Graphics.h>
+#include <stdlib.h>
 #include "graphics.h"
 
 void context_t_destroy(context_t *ctx)
@@ -18,4 +19,6 @@ void context_t_destroy(context_t *ctx)
         sfTexture_destroy(ctx->texture);
     if (ctx->sprite)
         sfSprite_destroy(ctx->sprite);
+    if (ctx)
+        free(ctx);
 }
