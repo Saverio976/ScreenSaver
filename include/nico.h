@@ -16,4 +16,6 @@ struct image_struct {
 };
 typedef struct image_struct image_t;
 
+void pixels_fade(sfUint8 *, int, int);
+
 #endif
