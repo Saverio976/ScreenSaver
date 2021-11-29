@@ -24,6 +24,7 @@ SCREEN3 = 	$(PREFIX)spawn/spawn.c 		\
 		$(PREFIX)spawn/explain.c
 
 SCREEN4 = 	$(PREFIX)nico/nico.c 		\
+		$(PREFIX)nico/pixels_fade.c	\
 		$(PREFIX)nico/explain.c
 
 SCREEN5 = 	$(PREFIX)bubulles/bubulles.c 			\
