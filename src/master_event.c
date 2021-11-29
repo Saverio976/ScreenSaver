@@ -10,12 +10,16 @@
 
 static int master_sfevtkeypressed(sfEvent *event)
 {
-    int ret_code = 0;
+    static sfKeyCode last = sfKeyUnknown;
+    int ret_code = 1;
 
     if (event->key.code == sfKeyLeft)
         ret_code = 2;
     if (event->key.code == sfKeyRight)
         ret_code = 3;
+    if (event->key.code == sfKeyEscape && last == sfKeyEscape)
+        ret_code = 0;
+    last = event->key.code;
     return (ret_code);
 }
 
