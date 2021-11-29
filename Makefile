@@ -33,11 +33,15 @@ SCREEN5 = 	$(PREFIX)bubulles/bubulles.c 			\
 		$(PREFIX)bubulles/circles_t_update_colision.c 	\
 		$(PREFIX)bubulles/explain.c
 
+SCREEN6 = 	$(PREFIX)bg_fade/bg_fade.c 	\
+		$(PREFIX)bg_fade/explain.c
+
 SRC 	= 	$(SCREEN1) 			\
 		$(SCREEN2) 			\
 		$(SCREEN3) 			\
 		$(SCREEN4) 			\
 		$(SCREEN5) 			\
+		$(SCREEN6) 			\
 		$(PREFIX)master_event.c 	\
 		$(PREFIX)cmd_functions.c
 
