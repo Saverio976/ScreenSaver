@@ -9,9 +9,8 @@
 #include "myscreensaver.h"
 #include "graphics.h"
 
-static sfColor single_fade_color(sfColor color)
+static sfColor single_fade_color(sfColor color, int padding)
 {
-    static int padding = 10;
     int red = color.r;
     int blue = color.b;
     int green = color.g;
@@ -44,7 +43,7 @@ static void fade_all_bg(framebuffer_t *buffer)
     color.g = buffer->pixels[index++];
     color.b = buffer->pixels[index++];
     color.a = buffer->pixels[index++];
-    color = single_fade_color(color);
+    color = single_fade_color(color, 10);
     framebuffer_t_clear(buffer, color);
 }
 
