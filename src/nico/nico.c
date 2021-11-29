@@ -21,11 +21,13 @@ static void update_pos(context_t *ctx, bitmap_t *bmp, image_t *positions)
             positions->pos.x <= 0) {
         positions->moove.x *= -1;
         positions->pos.x += positions->moove.x;
+        pixels_fade(bmp->pixels, bmp->info->height, bmp->info->width);
     }
     if (positions->pos.y + bmp->info->height > (int) ctx->buffer->h ||
             positions->pos.y <= 0) {
         positions->moove.y *= -1;
         positions->pos.y += positions->moove.y;
+        pixels_fade(bmp->pixels, bmp->info->height, bmp->info->width);
     }
     sfTexture_updateFromPixels(ctx->texture, bmp->pixels, bmp->info->width,
                                 bmp->info->height, positions->pos.x,
