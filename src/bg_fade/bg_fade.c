@@ -15,7 +15,6 @@ static sfColor single_fade_color(sfColor color)
     int red = color.r;
     int blue = color.b;
     int green = color.g;
-    printf("rgb : %d %d %d\n", color.r, color.g, color.b);
 
     if (color.r > 0 && color.b == 0) {
         red -= padding;
