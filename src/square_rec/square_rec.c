@@ -63,7 +63,7 @@ static int do_event(context_t *ctx, sfClock *clock, int *numbers)
                         default_colors[get_random_between(0, 100) % 8]);
         sfClock_restart(clock);
         (*numbers)++;
-        if (*numbers > 18) {
+        if (*numbers > 11) {
             framebuffer_t_clear(ctx->buffer, BG_COLOR);
             *numbers = 1;
         }
