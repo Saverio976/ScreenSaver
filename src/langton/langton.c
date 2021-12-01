@@ -73,7 +73,7 @@ static int init_all(context_t *ctx, sfClock **clock, table_t **table)
     *clock = sfClock_create();
     if (!ctx)
         return (0);
-    *table = table_t_create(ctx->buffer->w, ctx->buffer->h);
+    *table = table_t_create();
     if (!table)
         return (0);
     return (1);
