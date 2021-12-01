@@ -32,6 +32,7 @@ int screen_nico(unsigned int, unsigned int);
 int screen_bubulles(unsigned int, unsigned int);
 int screen_bg_fade(unsigned int, unsigned int);
 int screen_quare_rec(unsigned int, unsigned int);
+int screen_langton(unsigned int, unsigned int);
 
 void explain_circles(void);
 void explain_snow(void);
@@ -40,6 +41,7 @@ void explain_nico(void);
 void explain_bubulles(void);
 void explain_bg_fade(void);
 void explain_square_rec(void);
+void explain_langton(void);
 
 int print_bad_args(char const *);
 int print_h(char const *, int);
