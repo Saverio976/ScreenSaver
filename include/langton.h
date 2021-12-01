@@ -18,15 +18,13 @@
 
 struct table_struct {
     char **table;
-    int size_y;
-    int size_x;
     int ant_x;
     int ant_y;
     int ant_angle;
 };
 typedef struct table_struct table_t;
 
-table_t *table_t_create(unsigned int, unsigned int);
+table_t *table_t_create(void);
 void table_t_destroy(table_t *);
 void table_t_to_framebuffer(table_t *, framebuffer_t *);
 
