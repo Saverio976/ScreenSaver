@@ -39,6 +39,12 @@ SCREEN6 = 	$(PREFIX)bg_fade/bg_fade.c 	\
 SCREEN7 = 	$(PREFIX)square_rec/square_rec.c \
 		$(PREFIX)square_rec/explain.c
 
+SCREEN8 = 	$(PREFIX)langton/langton.c 			\
+		$(PREFIX)langton/table_t_create.c 		\
+		$(PREFIX)langton/table_t_destroy.c 		\
+		$(PREFIX)langton/table_t_to_framebuffer.c 	\
+		$(PREFIX)langton/explain.c
+
 SRC 	= 	$(SCREEN1) 			\
 		$(SCREEN2) 			\
 		$(SCREEN3) 			\
@@ -46,6 +52,7 @@ SRC 	= 	$(SCREEN1) 			\
 		$(SCREEN5) 			\
 		$(SCREEN6) 			\
 		$(SCREEN7) 			\
+		$(SCREEN8) 			\
 		$(PREFIX)master_event.c 	\
 		$(PREFIX)cmd_functions.c
 
