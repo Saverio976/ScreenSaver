@@ -62,7 +62,8 @@ SRC 	= 	$(SCREEN1) 			\
 		$(SCREEN8) 			\
 		$(SCREEN9) 			\
 		$(PREFIX)master_event.c 	\
-		$(PREFIX)cmd_functions.c
+		$(PREFIX)cmd_functions.c 	\
+		$(PREFIX)main.c
 
 OBJ 	= 	$(SRC:.c=.o)
 
@@ -76,10 +77,10 @@ LFLAGS 	= 	-L$(LPREFIX) -lall -lcsfml-graphics -lm -lcsfml-system
 
 # ----------------------------------------------------------------------------
 
-all: 		build_lib $(OBJ)
-	gcc -o $(NAME) $(MAIN) $(OBJ) $(LFLAGS) $(CFLAGS)
-
 $(NAME): 	all
+
+all: 		build_lib $(OBJ)
+	gcc -o $(NAME) $(OBJ) $(LFLAGS) $(CFLAGS)
 
 build_lib:
 	make -C $(LPREFIX)
