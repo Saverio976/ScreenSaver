@@ -45,6 +45,13 @@ SCREEN8 = 	$(PREFIX)langton/langton.c 			\
 		$(PREFIX)langton/table_t_to_framebuffer.c 	\
 		$(PREFIX)langton/explain.c
 
+SCREEN9 = 	$(PREFIX)gameoflife/gameoflife.c 			\
+		$(PREFIX)gameoflife/gameoflife_t_check_three_next.c 	\
+		$(PREFIX)gameoflife/gameoflife_t_create.c 		\
+		$(PREFIX)gameoflife/gameoflife_t_destroy.c 		\
+		$(PREFIX)gameoflife/gameoflife_t_to_buffer.c 		\
+		$(PREFIX)gameoflife/explain.c
+
 SRC 	= 	$(SCREEN1) 			\
 		$(SCREEN2) 			\
 		$(SCREEN3) 			\
@@ -53,6 +60,7 @@ SRC 	= 	$(SCREEN1) 			\
 		$(SCREEN6) 			\
 		$(SCREEN7) 			\
 		$(SCREEN8) 			\
+		$(SCREEN9) 			\
 		$(PREFIX)master_event.c 	\
 		$(PREFIX)cmd_functions.c
 

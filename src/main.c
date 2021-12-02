@@ -10,8 +10,8 @@
 #include "myscreensaver.h"
 #include "my.h"
 
-static const int ID_MAX = 8;
-static const struct screen_struct SCREENS[8] = {
+static const int ID_MAX = 9;
+static const struct screen_struct SCREENS[9] = {
     {&screen_circles},
     {&screen_snow},
     {&screen_spawn},
@@ -19,10 +19,11 @@ static const struct screen_struct SCREENS[8] = {
     {&screen_bubulles},
     {&screen_bg_fade},
     {&screen_quare_rec},
-    {&screen_langton}
+    {&screen_langton},
+    {&screen_gameoflife}
 };
 
-static const struct screen_explain EXPLAINS[8] = {
+static const struct screen_explain EXPLAINS[9] = {
     {&explain_circles},
     {&explain_snow},
     {&explain_spawn},
@@ -30,7 +31,8 @@ static const struct screen_explain EXPLAINS[8] = {
     {&explain_bubulles},
     {&explain_bg_fade},
     {&explain_square_rec},
-    {&explain_langton}
+    {&explain_langton},
+    {&explain_gameoflife}
 };
 
 static int print_d(void)
