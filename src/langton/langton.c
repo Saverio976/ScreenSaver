@@ -55,7 +55,7 @@ static int do_event(context_t *ctx, sfClock *clock, table_t *table)
     int ret_code = master_event(ctx);
     float seconds = sfClock_getElapsedTime(clock).microseconds / 100000.0;
 
-    if (seconds > 1.0 / 25.0) {
+    if (seconds > 1.0 / 2.0) {
         update_ant(table, ctx->buffer);
         sfTexture_updateFromPixels(ctx->texture, ctx->buffer->pixels,
                 ctx->buffer->w, ctx->buffer->h, 0, 0);
