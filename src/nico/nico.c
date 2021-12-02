@@ -57,7 +57,6 @@ static int do_event(context_t *ctx, bitmap_t *bmp, image_t *positions,
 static void destroy_all(context_t *ctx, bitmap_t *bmp, image_t *pos,
                         sfClock *clock)
 {
-    printf("coucou\n");
     if (ctx)
         context_t_destroy(ctx);
     if (bmp)
