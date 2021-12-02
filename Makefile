@@ -52,6 +52,9 @@ SCREEN9 = 	$(PREFIX)gameoflife/gameoflife.c 			\
 		$(PREFIX)gameoflife/gameoflife_t_to_buffer.c 		\
 		$(PREFIX)gameoflife/explain.c
 
+SCREEN10 = 	$(PREFIX)barnsley_fern/barnsley_fern.c 		\
+		$(PREFIX)barnsley_fern/explain.c
+
 SRC 	= 	$(SCREEN1) 			\
 		$(SCREEN2) 			\
 		$(SCREEN3) 			\
@@ -61,6 +64,7 @@ SRC 	= 	$(SCREEN1) 			\
 		$(SCREEN7) 			\
 		$(SCREEN8) 			\
 		$(SCREEN9) 			\
+		$(SCREEN10) 			\
 		$(PREFIX)master_event.c 	\
 		$(PREFIX)cmd_functions.c 	\
 		$(PREFIX)main.c
