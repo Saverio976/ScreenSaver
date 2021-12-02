@@ -11,8 +11,8 @@
     #include <SFML/Graphics.h>
     #include "graphics.h"
 
-    #define NUMBER_COL_CASE 84
-    #define NUMBER_LINE_CASE 128
+    #define NUMBER_COL_CASE 160
+    #define NUMBER_LINE_CASE 90
     #define DEFT_COLOR_1 sfBlack
     #define DEFT_COLOR_2 sfWhite
 
