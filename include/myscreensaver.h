@@ -35,6 +35,7 @@ int screen_quare_rec(unsigned int, unsigned int);
 int screen_langton(unsigned int, unsigned int);
 int screen_gameoflife(unsigned int, unsigned int);
 int screen_barnsleyfern(unsigned int, unsigned int);
+int screen_fractsquare(unsigned int, unsigned int);
 
 void explain_circles(void);
 void explain_snow(void);
@@ -46,6 +47,7 @@ void explain_square_rec(void);
 void explain_langton(void);
 void explain_gameoflife(void);
 void explain_barnsleyfern(void);
+void explain_fractsquare(void);
 
 int print_bad_args(char const *);
 int print_h(char const *, int);
