@@ -9,16 +9,19 @@
 #include <stdlib.h>
 #include "graphics.h"
 
-static int check_malloc_win(context_t *ctx)
+static int create_malloc_win(context_t *ctx, sfVideoMode mode, char const *t)
 {
+    ctx->win = sfRenderWindow_create(mode, t, sfResize | sfClose, NULL);
     if (ctx->win)
         return (1);
     free(ctx);
     return (0);
 }
 
-static int check_malloc_framebuffer(context_t *ctx)
+static int create_malloc_framebuffer(context_t *ctx, unsigned int w,
+        unsigned int h)
 {
+    ctx->buffer = framebuffer_t_create(w, h);
     if (ctx->buffer)
         return (1);
     sfRenderWindow_destroy(ctx->win);
@@ -26,8 +29,10 @@ static int check_malloc_framebuffer(context_t *ctx)
     return (0);
 }
 
-static int check_malloc_texture(context_t *ctx)
+static int create_malloc_texture(context_t *ctx, unsigned int w,
+        unsigned int h)
 {
+    ctx->texture = sfTexture_create(w, h);
     if (ctx->texture)
         return (1);
     sfRenderWindow_destroy(ctx->win);
@@ -36,8 +41,9 @@ static int check_malloc_texture(context_t *ctx)
     return (0);
 }
 
-static int check_malloc_sprite(context_t *ctx)
+static int create_malloc_sprite(context_t *ctx)
 {
+    ctx->sprite = sfSprite_create();
     if (ctx->sprite)
         return (1);
     sfRenderWindow_destroy(ctx->win);
@@ -55,19 +61,19 @@ context_t *context_t_init(char const *t, unsigned int w, unsigned int h,
 
     if (ctx == NULL)
         return (NULL);
-    ctx->win = sfRenderWindow_create(mode, t, sfResize | sfClose, NULL);
-    if (!check_malloc_win(ctx))
+    if (!create_malloc_win(ctx, mode, t))
         return (NULL);
-    ctx->buffer = framebuffer_t_create(w, h);
-    if (!check_malloc_framebuffer(ctx))
+    if (!create_malloc_framebuffer(ctx, w, h))
         return (NULL);
-    ctx->texture = sfTexture_create(w, h);
-    if (!check_malloc_texture(ctx))
+    if (!create_malloc_texture(ctx, w, h))
         return (NULL);
-    ctx->sprite = sfSprite_create();
-    if (!check_malloc_sprite(ctx))
+    if (!create_malloc_sprite(ctx))
         return (NULL);
     framebuffer_t_clear(ctx->buffer, color);
     sfSprite_setTexture(ctx->sprite, ctx->texture, sfTrue);
+    sfTexture_updateFromPixels(ctx->texture, ctx->buffer->pixels,
+                                ctx->buffer->w, ctx->buffer->h, 0, 0);
+    sfRenderWindow_drawSprite(ctx->win, ctx->sprite, NULL);
+    sfRenderWindow_display(ctx->win);
     return (ctx);
 }
