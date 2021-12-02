@@ -57,6 +57,7 @@ static int do_event(context_t *ctx, bitmap_t *bmp, image_t *positions,
 static void destroy_all(context_t *ctx, bitmap_t *bmp, image_t *pos,
                         sfClock *clock)
 {
+    printf("coucou\n");
     if (ctx)
         context_t_destroy(ctx);
     if (bmp)
@@ -89,9 +90,9 @@ static int init_all(bitmap_t **bmp, image_t **pos, unsigned int w,
 int screen_nico(unsigned int w, unsigned int h)
 {
     context_t *ctx = context_t_init("nico-4", w, h, BG_COLOR);
-    bitmap_t *bmp;
-    image_t *positions;
-    sfClock *clock;
+    bitmap_t *bmp = NULL;
+    image_t *positions = NULL;
+    sfClock *clock = NULL;
     int ret_code;
 
     if (!ctx)
