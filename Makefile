@@ -85,9 +85,9 @@ LFLAGS 	= 	-L$(LPREFIX) -lall -lcsfml-graphics -lm -lcsfml-system
 
 # ----------------------------------------------------------------------------
 
-$(NAME): 	all
+all: 	build_lib $(NAME)
 
-all: 		build_lib $(OBJ)
+$(NAME): 	$(OBJ)
 	gcc -o $(NAME) $(OBJ) $(LFLAGS) $(CFLAGS)
 
 build_lib:
