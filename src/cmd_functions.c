@@ -7,11 +7,14 @@
 
 #include "my.h"
 
-int print_bad_args(char const *exe)
+int print_bad_args(char const *exe, char const *str)
 {
     my_putstr(exe);
-    my_putstr(": bad arguments: 0 given but 1 is required\n");
-    my_putstr("retry with -h\n");
+    my_putstr(": bad arguments: ");
+    my_putstr(str);
+    my_putstr("\nretry with ");
+    my_putstr(exe);
+    my_putstr(" -h\n");
     return (84);
 }
 
@@ -27,8 +30,8 @@ int print_h(char const *exe, int nb_max)
     my_putstr(").\n\nOPTIONS\n\t-d\t\tprint the description of all ");
     my_putstr("the annimations and quit.\n\t-h\t\tprint the usage and quit");
     my_putstr("\n\nUSER INTERACTIONS\n\tLEFT_ARROW\tswitch to the ");
-    my_putstr("previous animation.\n\tRIGHT_ARROW\tsitch to the next");
-    my_putstr(" annimation.\n");
+    my_putstr("previous animation.\n\tRIGHT_ARROW\tswitch to the next");
+    my_putstr(" annimation.\n\tEscape+Esacape\tquit the window\n");
     return (0);
 }
 
