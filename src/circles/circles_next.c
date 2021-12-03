@@ -39,11 +39,11 @@ static void circles_t_destroy(circles_t **circles)
 }
 
 void destroy_circles(context_t *ctx, circles_t **circles,
-                    sfClock *clock_screen, sfClock *clock_update)
+                    sfClock *clock_update)
 {
     context_t_destroy(ctx);
     circles_t_destroy(circles);
-    destroy_2_clock(clock_screen, clock_update);
+    sfClock_destroy(clock_update);
 }
 
 void re_init_framebuffer(context_t *ctx, circles_t **circles,
