@@ -69,11 +69,13 @@ int main(int ac, char **av)
     int nb;
 
     if (ac < 2)
-        return (print_bad_args(av[0]));
+        return (print_bad_args(av[0], "0 given but 1 is required"));
     if (av[1][0] == '-' && av[1][1] == 'h')
         return (print_h(av[0], ID_MAX));
     if (av[1][0] == '-' && av[1][1] == 'd')
         return (print_d());
+    if (av[1][0] == '-')
+        return (print_bad_args(av[0], "screen ID must be a positiv integer"));
     nb = my_getnbr(av[1]);
     if (nb <= 0 || nb > ID_MAX)
         return (print_bad_id(av[0], ID_MAX));
