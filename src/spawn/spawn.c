@@ -68,10 +68,13 @@ static int do_event(context_t *ctx, sfClock *clock, alpha_t **alphas,
     if (seconds > 1.0 / 2.0)
         update_alphas(ctx, alphas, clock);
     seconds = sfClock_getElapsedTime(clock_refresh).microseconds / 1000000.0;
-    if (seconds > 5.0) {
-        framebuffer_t_clear(ctx->buffer, BG_COLOR);
+    if (seconds > 1.0 / 15.0) {
+        framebuffer_t_fade(ctx->buffer, 5);
         sfClock_restart(clock_refresh);
+        sfTexture_updateFromPixels(ctx->texture, ctx->buffer->pixels,
+                                    ctx->buffer->w, ctx->buffer->h, 0, 0);
     }
+    sfRenderWindow_clear(ctx->win, sfBlack);
     sfRenderWindow_drawSprite(ctx->win, ctx->sprite, NULL);
     sfRenderWindow_display(ctx->win);
     return (ret_code);
