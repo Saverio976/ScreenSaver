@@ -40,6 +40,21 @@ void framebuffer_t_clear(framebuffer_t *buffer, sfColor color)
             my_putpixel(buffer, x, y, color);
 }
 
+void framebuffer_t_fade(framebuffer_t *buffer, int intensity)
+{
+    int index = 0;
+
+    for (unsigned int y = 0; y < buffer->h; y++) {
+        for (unsigned int x = 0; x < buffer->w; x++) {
+            if (buffer->pixels[index + 3] > intensity)
+                buffer->pixels[index + 3] -= intensity;
+            else
+                buffer->pixels[index + 3] = 0;
+            index += 4;
+        }
+    }
+}
+
 void my_putpixel(framebuffer_t *buffer, unsigned int x, unsigned int y,
                     sfColor color)
 {

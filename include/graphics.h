@@ -23,6 +23,7 @@ framebuffer_t *framebuffer_t_create(unsigned int, unsigned int);
 void framebuffer_t_destroy(framebuffer_t *);
 void my_putpixel(framebuffer_t *, unsigned int, unsigned int, sfColor);
 void framebuffer_t_clear(framebuffer_t *, sfColor);
+void framebuffer_t_fade(framebuffer_t *, int);
 
 // context struct
 
