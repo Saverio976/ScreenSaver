@@ -49,7 +49,7 @@ void explain_gameoflife(void);
 void explain_barnsleyfern(void);
 void explain_fractsquare(void);
 
-int print_bad_args(char const *);
+int print_bad_args(char const *, char const *);
 int print_h(char const *, int);
 int print_bad_id(char const *, int);
 
