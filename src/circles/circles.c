@@ -60,19 +60,17 @@ void update_circles(framebuffer_t *buffer, circles_t **circles,
 static int do_event(context_t *ctx, circles_t **circles,
                         sfClock *clock_screen, sfClock *clock_update)
 {
-    float seconds1;
-    float seconds2;
+    float seconds;
     int ret_code = master_event(ctx);
 
-    seconds1 = sfClock_getElapsedTime(clock_screen).microseconds / 1000000.0;
-    seconds2 = sfClock_getElapsedTime(clock_update).microseconds / 1000000.0;
-    if (seconds1 > 5.0)
-        re_init_framebuffer(ctx, circles, clock_screen, clock_update);
-    else if (seconds2 > 1.0 / 20.0) {
+    seconds = sfClock_getElapsedTime(clock_update).microseconds / 1000000.0;
+    if (seconds > 1.0 / 20.0) {
+        framebuffer_t_fade(ctx->buffer, 7);
         update_circles(ctx->buffer, circles, clock_update);
         sfTexture_updateFromPixels(ctx->texture, ctx->buffer->pixels,
                                     ctx->buffer->w, ctx->buffer->h, 0, 0);
     }
+    sfRenderWindow_clear(ctx->win, sfBlack);
     sfRenderWindow_drawSprite(ctx->win, ctx->sprite, NULL);
     sfRenderWindow_display(ctx->win);
     return (ret_code);
@@ -94,7 +92,6 @@ int screen_circles(unsigned int w, unsigned int h)
     create_2_clock(&clock_screen, &clock_update);
     if (!clock_screen || !clock_update)
         return (84);
-    sfRenderWindow_setFramerateLimit(ctx->win, 30);
     while (sfRenderWindow_isOpen(ctx->win))
         ret_code = do_event(ctx, circles, clock_screen, clock_update);
     destroy_circles(ctx, circles, clock_screen, clock_update);
