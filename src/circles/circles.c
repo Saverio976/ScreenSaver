@@ -58,7 +58,7 @@ void update_circles(framebuffer_t *buffer, circles_t **circles,
 }
 
 static int do_event(context_t *ctx, circles_t **circles,
-                        sfClock *clock_screen, sfClock *clock_update)
+                        sfClock *clock_update)
 {
     float seconds;
     int ret_code = master_event(ctx);
@@ -78,7 +78,6 @@ static int do_event(context_t *ctx, circles_t **circles,
 
 int screen_circles(unsigned int w, unsigned int h)
 {
-    sfClock *clock_screen;
     sfClock *clock_update;
     context_t *ctx = context_t_init("circles-1", w, h, BG_COLOR);
     circles_t **circles = NULL;
@@ -89,11 +88,11 @@ int screen_circles(unsigned int w, unsigned int h)
     circles = circles_t_create(w, h);
     if (!circles)
         return (84);
-    create_2_clock(&clock_screen, &clock_update);
-    if (!clock_screen || !clock_update)
+    clock_update = sfClock_create();
+    if (!clock_update)
         return (84);
     while (sfRenderWindow_isOpen(ctx->win))
-        ret_code = do_event(ctx, circles, clock_screen, clock_update);
-    destroy_circles(ctx, circles, clock_screen, clock_update);
+        ret_code = do_event(ctx, circles, clock_update);
+    destroy_circles(ctx, circles, clock_update);
     return (ret_code);
 }
