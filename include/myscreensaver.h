@@ -11,10 +11,12 @@
     #include <SFML/Graphics.h>
     #include "graphics.h"
 
-    #define BG_COLOR sfBlack
-
 // create a moutarde color :
 // sfColor_fromRGB(232, 185, 18)
+// default color : sfBlack, sfRed, sfBlue, sfCyan, sfMagenta, sfYellow, sfGreen
+//                  sfWhite
+
+    #define BG_COLOR sfBlack
 
 struct screen_struct {
     int (*fptr)(unsigned int, unsigned int);
