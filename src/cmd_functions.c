@@ -20,18 +20,20 @@ int print_bad_args(char const *exe, char const *str)
 
 int print_h(char const *exe, int nb_max)
 {
-    my_putstr("annimation rendering in a CSFML window.\n\n");
-    my_putstr("USAGE\n\t");
+    my_putstr("annimation rendering in a CSFML window.\n\nUSAGE\n\t");
     my_putstr(exe);
-    my_putstr(" [OPTIONS] annimation_id\n\t");
-    my_putstr(" annimation_id\tID of the annimation to process");
-    my_putstr(" (between 1 and ");
+    my_putstr(" [OPTIONS] annimation_id\n\tannimation_id\tID of the "
+        "annimation to process (between 1 and ");
     my_putnbr(nb_max);
-    my_putstr(").\n\nOPTIONS\n\t-d\t\tprint the description of all ");
-    my_putstr("the annimations and quit.\n\t-h\t\tprint the usage and quit");
-    my_putstr("\n\nUSER INTERACTIONS\n\tLEFT_ARROW\tswitch to the ");
-    my_putstr("previous animation.\n\tRIGHT_ARROW\tswitch to the next");
-    my_putstr(" annimation.\n\tEscape+Esacape\tquit the window\n");
+    my_putstr(").\n\nOPTIONS\n\t-d\t\tprint the description of all "
+        "the annimations and quit.\n\t-h\t\tprint the usage and quit\n\n"
+        "USER INTERACTIONS\n\tLEFT_ARROW\tswitch to the previous annimation\n"
+        "\tRIGHT_ARROW\tswitch to the next annimation.\n\tEscape+Esacape\tquit"
+        " the window\n\nCONFIG\n\tbackground color\tupdate the color in"
+        "include/myscreensaver.h and update the macro BG_COLOR\n\tsize of"
+        "cells for the langton screen\tupdate the macro NUMBER_COL_CASE and "
+        "NUMBER_LINE_CASE in include/langton.h\n\tfor more confi, see the "
+        "README.md\n");
     return (0);
 }
 
