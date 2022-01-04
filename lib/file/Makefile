@@ -1,34 +1,58 @@
 ##
 ## EPITECH PROJECT, 2021
-## BSQ
+## LIBMY
 ## File description:
-## make the liball
+## make the libmy
 ##
 
-NAME 		= 	libfile.a
+# COLOUR
+CYAN		=	'\033[0;36m'
+GREEN 		= 	'\033[0;32m'
+RESET		=	'\033[0m'
 
-HPREFIX 	= 	../../include/
+# CURRENT RULE
+CURR_RULE	=	all
 
-SRC 		= 	open_ronly.c 		\
+# TARGET
+TARGET		=	libfile.a
 
-OBJ 		= 	$(SRC:.c=.o)
+SRCDIR		=	.
 
-CWFLAGS 	= 	-Wall -Wextra -Wpedantic
+VPATH		=	$(SRCDIR) $(OBJDIR) include/
 
-CFLAGS 		= 	$(CWFLAGS) -I$(HPREFIX)
+SRC		=	$(shell find $(SRCDIR) -name '*.c')
+
+OBJ		:=	$(SRC:%.c=%.o)
+
+CFLAGS		=	-I../../include -Wall -Wextra -Wpedantic
 
 # ----------------------------------------------------------------------------
 
-$(NAME): 	$(OBJ)
-	ar rc $(NAME) $(OBJ)
+%.o: %.c
+	@$(CC)     $(CFLAGS)     $^ -c -o $@
 
-all: 		$(NAME)
+.PHONY: all
+all:	CURR_RULE = all
+all:	init $(TARGET) ## Call $(TARGET)
+	@echo -e $(GREEN)[finished]: $(TARGET): make $(CURR_RULE)$(RESET)
 
-re: 		fclean all
+$(TARGET):	CURR_RULE = $(TARGET)
+$(TARGET):	init $(OBJ) ## Build the lib
+	@ar rc $(TARGET) $(OBJ)
+	@echo -e $(GREEN)[finished]: $(TARGET): make $(CURR_RULE)$(RESET)
 
-clean:
-	rm -f *.swp
+init:
+	@echo -e $(CYAN)[starting]: $(TARGET): make $(CURR_RULE) ...$(RESET)
 
-fclean: 	clean
-	rm -f *.o
-	rm -f $(NAME)
+.PHONY: clean
+clean: ## Clean obj/*.o
+	@rm -f $(OBJ)
+
+.PHONY: fclean
+fclean: CURR_RULE = fclean
+fclean:	init clean ## Clean the binary
+	@rm -f $(TARGET)
+	@echo -e $(GREEN)[finished]: $(TARGET): make $(CURR_RULE)$(RESET)
+
+.PHONY: re
+re:	fclean all ## Fclean+All

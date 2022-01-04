@@ -1,34 +1,58 @@
 ##
 ## EPITECH PROJECT, 2021
-## MYSCREENSAVER
+## LIBMY
 ## File description:
-## make the graphics
+## make the libmy
 ##
 
-NAME 	= 	libgraph.a
+# COLOUR
+CYAN		=	'\033[0;36m'
+GREEN 		= 	'\033[0;32m'
+RESET		=	'\033[0m'
 
-SRC 	= 	context_t_destroy.c 	\
-		context_t_init.c 	\
-		figures.c 		\
-		framebuffer.c
+# CURRENT RULE
+CURR_RULE	=	all
 
-OBJ 	= 	$(SRC:.c=.o)
+# TARGET
+TARGET		=	libgraph.a
 
-IPREFIX = 	../../include/
+SRCDIR		=	.
 
-CFLAGS 	= 	-Wall -Wextra -Wpedantic -I$(IPREFIX)
+VPATH		=	$(SRCDIR) $(OBJDIR) include/
+
+SRC		=	$(shell find $(SRCDIR) -name '*.c')
+
+OBJ		:=	$(SRC:%.c=%.o)
+
+CFLAGS		=	-I../../include -Wall -Wextra -Wpedantic
 
 # ----------------------------------------------------------------------------
 
-all: 		$(OBJ)
-	ar rc $(NAME) $(OBJ)
+%.o: %.c
+	@$(CC)     $(CFLAGS)     $^ -c -o $@
 
-$(NAME): 	all
+.PHONY: all
+all:	CURR_RULE = all
+all:	init $(TARGET) ## Call $(TARGET)
+	@echo -e $(GREEN)[finished]: $(TARGET): make $(CURR_RULE)$(RESET)
 
-clean:
-	rm -rf *.swp
+$(TARGET):	CURR_RULE = $(TARGET)
+$(TARGET):	init $(OBJ) ## Build the lib
+	@ar rc $(TARGET) $(OBJ)
+	@echo -e $(GREEN)[finished]: $(TARGET): make $(CURR_RULE)$(RESET)
 
-fclean: 	clean
-	rm -rf $(OBJ) $(NAME)
+init:
+	@echo -e $(CYAN)[starting]: $(TARGET): make $(CURR_RULE) ...$(RESET)
 
-re: 		fclean all
+.PHONY: clean
+clean: ## Clean obj/*.o
+	@rm -f $(OBJ)
+
+.PHONY: fclean
+fclean: CURR_RULE = fclean
+fclean:	init clean ## Clean the binary
+	@rm -f $(TARGET)
+	@echo -e $(GREEN)[finished]: $(TARGET): make $(CURR_RULE)$(RESET)
+
+.PHONY: re
+re:	fclean all ## Fclean+All

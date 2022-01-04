@@ -1,103 +1,64 @@
 ##
 ## EPITECH PROJECT, 2021
-## MYSCREENSAVER
+## sample
 ## File description:
-## make the myscreensaver
+## sample description
 ##
 
-NAME 	= 	my_screensaver
+# COLOUR
+CYAN		=	'\033[0;36m'
+GREEN 		= 	'\033[0;32m'
+RESET		=	'\033[0m'
 
-PREFIX 	= 	src/
+# TARGET
+TARGET		=	my_screensaver
 
-MAIN 	= 	$(PREFIX)main.c
+LIB_TARGET	=	lib/liball.a
 
-SCREEN1 = 	$(PREFIX)circles/circles.c 	\
-		$(PREFIX)circles/circles_next.c \
-		$(PREFIX)circles/explain.c
+TARGET_TEST	=	bin_test
 
-SCREEN2 = 	$(PREFIX)snow/snow.c 		\
-		$(PREFIX)snow/snow_next.c 	\
-		$(PREFIX)snow/explain.c
+SRCDIR		=	src/
 
-SCREEN3 = 	$(PREFIX)spawn/spawn.c 		\
-		$(PREFIX)spawn/draw_a.c 	\
-		$(PREFIX)spawn/explain.c
+VPATH		=	$(SRCDIR) lib/ include/ tests/
 
-SCREEN4 = 	$(PREFIX)nico/nico.c 		\
-		$(PREFIX)nico/pixels_fade.c	\
-		$(PREFIX)nico/explain.c
+SRC		:=	$(shell find $(SRCDIR) -name '*.c')
+SRC		:=	$(filter-out $(SRCDIR)main.c, $(SRC))
+OBJ		:=	$(SRC:%.c=%.o)
 
-SCREEN5 = 	$(PREFIX)bubulles/bubulles.c 			\
-		$(PREFIX)bubulles/circles_t_iscolide.c 		\
-		$(PREFIX)bubulles/draw_plain_circle.c 		\
-		$(PREFIX)bubulles/circles_t_update_colision.c 	\
-		$(PREFIX)bubulles/explain.c
+MAIN_SRC	=	$(SRCDIR)main.c
+MAIN_OBJ	:=	$(MAIN_SRC:%.c=%.o)
 
-SCREEN6 = 	$(PREFIX)bg_fade/bg_fade.c 	\
-		$(PREFIX)bg_fade/explain.c
+CFLAGS		= 	-Iinclude/ -Ilib/include/ -Wall -Wextra -Wpedantic
 
-SCREEN7 = 	$(PREFIX)square_rec/square_rec.c \
-		$(PREFIX)square_rec/explain.c
-
-SCREEN8 = 	$(PREFIX)langton/langton.c 			\
-		$(PREFIX)langton/table_t_create.c 		\
-		$(PREFIX)langton/table_t_destroy.c 		\
-		$(PREFIX)langton/table_t_to_framebuffer.c 	\
-		$(PREFIX)langton/explain.c
-
-SCREEN9 = 	$(PREFIX)gameoflife/gameoflife.c 			\
-		$(PREFIX)gameoflife/gameoflife_t_check_three_next.c 	\
-		$(PREFIX)gameoflife/gameoflife_t_create.c 		\
-		$(PREFIX)gameoflife/gameoflife_t_destroy.c 		\
-		$(PREFIX)gameoflife/gameoflife_t_to_buffer.c 		\
-		$(PREFIX)gameoflife/explain.c
-
-SCREEN10 = 	$(PREFIX)barnsley_fern/barnsley_fern.c 		\
-		$(PREFIX)barnsley_fern/explain.c
-
-SCREEN11 = 	$(PREFIX)fract_square/fract_square.c 	\
-		$(PREFIX)fract_square/explain.c
-
-SRC 	= 	$(SCREEN1) 			\
-		$(SCREEN2) 			\
-		$(SCREEN3) 			\
-		$(SCREEN4) 			\
-		$(SCREEN5) 			\
-		$(SCREEN6) 			\
-		$(SCREEN7) 			\
-		$(SCREEN8) 			\
-		$(SCREEN9) 			\
-		$(SCREEN10) 			\
-		$(SCREEN11) 			\
-		$(PREFIX)master_event.c 	\
-		$(PREFIX)cmd_functions.c 	\
-		$(PREFIX)main.c
-
-OBJ 	= 	$(SRC:.c=.o)
-
-LPREFIX = 	lib/
-
-IPREFIX = 	include/
-
-CFLAGS 	= 	-Wall -Wextra -Wpedantic -I$(IPREFIX)
-
-LFLAGS 	= 	-L$(LPREFIX) -lall -lcsfml-graphics -lm -lcsfml-system
+LFLAGS		=	-Llib/ -lall -lcsfml-graphics -lcsfml-system -lm
 
 # ----------------------------------------------------------------------------
 
-all: 	build_lib $(NAME)
+%.o: %.c
+	@$(CC)     $(CFLAGS)    $^ -c -o $@
+#@echo -e $(CYAN)'compil : $(notdir $^) -> $(notdir $@)'$(RESET)
 
-$(NAME): 	$(OBJ)
-	gcc -o $(NAME) $(OBJ) $(LFLAGS) $(CFLAGS)
+.PHONY: all
+all:	$(LIB_TARGET) $(TARGET) ## Build lib+binary
 
-build_lib:
-	make -C $(LPREFIX)
+$(TARGET):	$(OBJ) $(MAIN_OBJ) ## Build the binary
+	@$(CC) $(OBJ) $(MAIN_OBJ) -o $(TARGET) $(LFLAGS) $(CFLAGS)
+	@echo -e $(GREEN)[finished]: $(TARGET): make $(TARGET)$(RESET)
 
-clean:
-	rm -rf *.swp
+$(LIB_TARGET): ## Build the lib
+	@$(MAKE) -C lib/ -s
 
-fclean: 	clean
-	rm -rf $(OBJ) $(NAME)
-	make -C $(LPREFIX) fclean
+.PHONY: clean
+clean: ## Clean obj and gcno/gcda
+	@rm -f $(OBJ) $(MAIN_OBJ)
+	@rm -f $(shell find . -name 'vgcore.*')
+	@rm -f $(shell find . -name '*.gcno') $(shell find . -name '*.gcda')
 
-re: 		fclean all
+.PHONY: fclean
+fclean:	clean ## Clean+Remove target/target_test and call lib fclean
+	@$(MAKE) -C lib/ fclean -s
+	@rm -f $(TARGET) $(TARGET_TEST)
+	@echo -e $(GREEN)[finished]: $(TARGET): make fclean$(RESET)
+
+.PHONY: re
+re:	fclean all ## Fclean+All
