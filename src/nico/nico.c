@@ -30,13 +30,13 @@ static void update_pos(context_t *ctx, bitmap_t *bmp, image_t *positions)
         pixels_fade(bmp->pixels, bmp->info->height, bmp->info->width);
     }
     sfTexture_updateFromPixels(ctx->texture, bmp->pixels, bmp->info->width,
-                                bmp->info->height, positions->pos.x,
-                                positions->pos.y);
+        bmp->info->height, positions->pos.x,
+        positions->pos.y);
     sfRenderWindow_drawSprite(ctx->win, ctx->sprite, NULL);
 }
 
 static int do_event(context_t *ctx, bitmap_t *bmp, image_t *positions,
-                        sfClock *clock)
+    sfClock *clock)
 {
     static float seconds;
     int ret_code = master_event(ctx);
@@ -55,7 +55,7 @@ static int do_event(context_t *ctx, bitmap_t *bmp, image_t *positions,
 }
 
 static void destroy_all(context_t *ctx, bitmap_t *bmp, image_t *pos,
-                        sfClock *clock)
+    sfClock *clock)
 {
     if (ctx)
         context_t_destroy(ctx);
@@ -68,7 +68,7 @@ static void destroy_all(context_t *ctx, bitmap_t *bmp, image_t *pos,
 }
 
 static int init_all(bitmap_t **bmp, image_t **pos, unsigned int w,
-                    unsigned int h)
+    unsigned int h)
 {
     int i_x = get_random_between(0, 1);
     int i_y = get_random_between(0, 1);

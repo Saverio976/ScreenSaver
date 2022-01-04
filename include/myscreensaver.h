@@ -13,8 +13,8 @@
 
 // create a moutarde color :
 // sfColor_fromRGB(232, 185, 18)
-// default color : sfBlack, sfRed, sfBlue, sfCyan, sfMagenta, sfYellow, sfGreen
-//                  sfWhite
+// default color :
+// sfBlack, sfRed, sfBlue, sfCyan, sfMagenta, sfYellow, sfGreen sfWhite
 
     #define BG_COLOR sfBlack
 

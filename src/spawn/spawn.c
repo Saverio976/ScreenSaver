@@ -17,7 +17,7 @@ static alpha_t **alpha_t_create(unsigned int w, unsigned int h)
 {
     alpha_t **alphas = malloc(sizeof(alpha_t *) * 10);
     sfColor default_colors[8] = {sfBlue, sfRed, sfCyan, sfYellow, sfMagenta,
-                                sfWhite, sfGreen};
+        sfWhite, sfGreen};
 
     alphas[9] = NULL;
     for (int i = 0; i < 9; i++) {
@@ -42,7 +42,7 @@ static void alpha_t_destroy(alpha_t **alphas)
 }
 
 static void update_alphas(context_t *ctx, alpha_t **alphas,
-                            sfClock *clock)
+    sfClock *clock)
 {
     for (int i = 0; alphas[i] != NULL; i++) {
         if (alphas[i]->is_visible) {
@@ -59,7 +59,7 @@ static void update_alphas(context_t *ctx, alpha_t **alphas,
 }
 
 static int do_event(context_t *ctx, sfClock *clock, alpha_t **alphas,
-                        sfClock *clock_refresh)
+    sfClock *clock_refresh)
 {
     static float seconds;
     int ret_code = master_event(ctx);

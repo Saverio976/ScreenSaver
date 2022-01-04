@@ -24,7 +24,7 @@ static void put_square_from(table_t *table, int y, int x,
         framebuffer_t *buffer)
 {
     sfVector2u pos = {x * buffer->w / table->size_x,
-                        y * buffer->h / table->size_y};
+        y * buffer->h / table->size_y};
 
     if (table->table[y][x] == 0)
         put_square(buffer, pos, COLOR_TABLE_2, table);

@@ -15,7 +15,7 @@
 static lines_t **lines_t_create(unsigned int w, unsigned int h)
 {
     sfColor default_colors[8] = {sfBlue, sfCyan, sfGreen, sfMagenta, sfRed,
-                                sfWhite, sfYellow};
+        sfWhite, sfYellow};
     lines_t **lines = malloc(sizeof(lines_t *) * 30);
 
     lines[29] = NULL;

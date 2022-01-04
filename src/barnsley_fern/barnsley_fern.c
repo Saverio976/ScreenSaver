@@ -40,7 +40,7 @@ static void draw_instance(context_t *ctx)
     float tmp_x = get_x_from(nb, last_y, last_x);
     float tmp_y = get_y_from(nb, last_y, last_x);
     sfColor default_colors[8] = {sfBlue, sfCyan, sfGreen,
-                                sfMagenta, sfRed, sfWhite, sfYellow};
+        sfMagenta, sfRed, sfWhite, sfYellow};
 
     last_y = tmp_y;
     last_x = tmp_x;

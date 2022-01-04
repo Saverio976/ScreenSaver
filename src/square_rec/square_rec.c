@@ -12,7 +12,7 @@
 #include "square_rec.h"
 
 static void draw_pixel_if_needed(framebuffer_t *buffer, sfVector2u pos,
-                                rectangle_t *rect, sfColor color)
+    rectangle_t *rect, sfColor color)
 {
     if (pos.x < rect->x + PADDING || pos.y < rect->y + PADDING)
         my_putpixel(buffer, pos.x, pos.y, color);
@@ -23,7 +23,7 @@ static void draw_pixel_if_needed(framebuffer_t *buffer, sfVector2u pos,
 }
 
 static void draw_square(framebuffer_t *buffer, rectangle_t *rect,
-                        sfColor color)
+    sfColor color)
 {
     sfVector2u pos = {0, 0};
 
@@ -56,7 +56,7 @@ static int do_event(context_t *ctx, sfClock *clock, int *numbers)
     float seconds = sfClock_getElapsedTime(clock).microseconds / 1000000.0;
     int ret_code = master_event(ctx);
     sfColor default_colors[8] = {sfBlue, sfRed, sfCyan, sfYellow, sfMagenta,
-                                sfWhite, sfGreen};
+        sfWhite, sfGreen};
 
     if (seconds > 1.0 / 2.0) {
         draw_square_rec(ctx, *numbers,

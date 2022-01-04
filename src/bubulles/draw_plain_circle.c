@@ -11,7 +11,7 @@
 #include "circles.h"
 
 static void put_mixed_pixels(framebuffer_t *buffer, sfVector2u pos,
-                            sfColor color)
+    sfColor color)
 {
     int index = (pos.y * buffer->w + pos.x) * 4;
 
@@ -24,14 +24,14 @@ static void put_mixed_pixels(framebuffer_t *buffer, sfVector2u pos,
 }
 
 static void do_condition_circle(framebuffer_t *buffer, sfVector2u pos,
-                                int condition, sfColor color)
+    int condition, sfColor color)
 {
     if (condition)
         put_mixed_pixels(buffer, pos, color);
 }
 
 void draw_plain_circle(framebuffer_t *buffer, sfVector2i center, int radius,
-                    sfColor color)
+    sfColor color)
 {
     sfVector2u position = {0, 0};
     int calc = 0;

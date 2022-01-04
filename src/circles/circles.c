@@ -15,7 +15,7 @@
 static circles_t **circles_t_create(unsigned int w, unsigned int h)
 {
     sfColor default_colors[8] = {sfBlue, sfCyan, sfGreen,
-                                sfMagenta, sfRed, sfWhite, sfYellow};
+        sfMagenta, sfRed, sfWhite, sfYellow};
     circles_t **circles = malloc(sizeof(circles_t *) * 4);
 
     circles[3] = NULL;
@@ -34,10 +34,10 @@ static circles_t **circles_t_create(unsigned int w, unsigned int h)
 }
 
 void update_circles(framebuffer_t *buffer, circles_t **circles,
-                            sfClock *clock)
+    sfClock *clock)
 {
     sfColor default_colors[8] = {sfBlue, sfCyan, sfGreen,
-                                sfMagenta, sfRed, sfWhite, sfYellow};
+        sfMagenta, sfRed, sfWhite, sfYellow};
 
     for (int i = 0; circles[i] != NULL; i++) {
         circles[i]->pos->x += circles[i]->moove_x;
@@ -58,7 +58,7 @@ void update_circles(framebuffer_t *buffer, circles_t **circles,
 }
 
 static int do_event(context_t *ctx, circles_t **circles,
-                        sfClock *clock_update)
+    sfClock *clock_update)
 {
     float seconds;
     int ret_code = master_event(ctx);

@@ -33,7 +33,6 @@ static sfColor single_fade_color(sfColor color, int padding)
     return (color);
 }
 
-
 static void fade_all_bg(framebuffer_t *buffer)
 {
     sfColor color = {0, 0, 0, 0};

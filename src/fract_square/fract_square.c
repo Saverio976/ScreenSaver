@@ -25,7 +25,7 @@ static void draw_four_new_square(context_t *ctx, int n)
     sfVector2u padding = {ctx->buffer->w / n, ctx->buffer->h / n};
     sfVector2u pos = {padding.x, padding.y};
     sfColor default_colors[7] = {sfBlue, sfCyan, sfGreen,
-                                sfMagenta, sfRed, sfWhite, sfYellow};
+        sfMagenta, sfRed, sfWhite, sfYellow};
 
     put_square(ctx->buffer, padding, padding.y,
             default_colors[get_random_between(0, 6)]);

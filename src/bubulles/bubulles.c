@@ -16,7 +16,7 @@
 static circles_t **circles_t_create(unsigned int w, unsigned int h)
 {
     sfColor default_colors[8] = {sfBlue, sfCyan, sfGreen,
-                                sfMagenta, sfRed, sfWhite, sfYellow};
+        sfMagenta, sfRed, sfWhite, sfYellow};
     circles_t **circles = malloc(sizeof(circles_t *) * 11);
     int radius;
 

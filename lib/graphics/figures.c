@@ -9,7 +9,7 @@
 #include "graphics.h"
 
 static void do_condition_line(framebuffer_t *buffer, sfVector2u pos,
-                            int condition[2], sfColor color)
+    int condition[2], sfColor color)
 {
     unsigned int calc1 = condition[0] * pos.x + condition[1];
     unsigned int calc2;
@@ -26,7 +26,7 @@ static void do_condition_line(framebuffer_t *buffer, sfVector2u pos,
 }
 
 void draw_line(framebuffer_t *buffer, sfVector2i point_a, sfVector2i point_b,
-                sfColor color)
+    sfColor color)
 {
     sfVector2u position = {0, 0};
     int condition[2] = {0};
@@ -47,14 +47,14 @@ void draw_line(framebuffer_t *buffer, sfVector2i point_a, sfVector2i point_b,
 }
 
 static void do_condition_circle(framebuffer_t *buffer, sfVector2u pos,
-                                int condition, sfColor color)
+    int condition, sfColor color)
 {
     if (condition)
         my_putpixel(buffer, pos.x, pos.y, color);
 }
 
 void draw_circle(framebuffer_t *buffer, sfVector2i center, int radius,
-                    sfColor color)
+    sfColor color)
 {
     sfVector2u position = {0, 0};
     int calc = 0;
@@ -69,7 +69,7 @@ void draw_circle(framebuffer_t *buffer, sfVector2i center, int radius,
             position.y = (unsigned int) y;
             calc = pow(x - center.x, 2) + pow(y - center.y, 2);
             condition = calc <= pow(radius, 2) + radius * 2 &&
-                        calc >= pow(radius, 2) - radius * 2;
+                calc >= pow(radius, 2) - (radius * 2);
             do_condition_circle(buffer, position, condition, color);
         }
     }

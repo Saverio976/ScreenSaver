@@ -39,7 +39,7 @@ static void circles_t_destroy(circles_t **circles)
 }
 
 void destroy_circles(context_t *ctx, circles_t **circles,
-                    sfClock *clock_update)
+    sfClock *clock_update)
 {
     context_t_destroy(ctx);
     circles_t_destroy(circles);
@@ -47,7 +47,7 @@ void destroy_circles(context_t *ctx, circles_t **circles,
 }
 
 void re_init_framebuffer(context_t *ctx, circles_t **circles,
-                            sfClock *clock_screen, sfClock *clock_update)
+    sfClock *clock_screen, sfClock *clock_update)
 {
     framebuffer_t_clear(ctx->buffer, BG_COLOR);
     update_circles(ctx->buffer, circles, clock_update);

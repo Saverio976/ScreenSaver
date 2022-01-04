@@ -23,7 +23,7 @@ static void put_square_from(gameoflife_t *board, int y, int x,
         framebuffer_t *buffer)
 {
     sfVector2u pos = {x * buffer->w / board->size_x,
-                        y * buffer->h / board->size_y};
+        y * buffer->h / board->size_y};
 
     if (board->board[y][x] == 0)
         put_square(buffer, pos, DEFT_COLOR_2, board);
