@@ -1,5 +1,51 @@
 # MYSCREENSAVER
 
+## 11 screensaver
+
+- 1
+three circles that bounce and leave a trail behind them
+![circles](assets/screens/screen_1.png)
+
+- 2
+random little lines fall from top to bottom
+![snow](assets/screens/screen_2.png)
+
+- 3
+draws randomly crossed circles
+![spawn](assets/screens/screen_3.png)
+
+- 4
+do you remember the 'dvd' image that bounces on the screen ? the same one but with a .bmp image.
+the challenge was to retrieve pixels from a .bmp with only possibility to read the file as a "text" file
+
+- 5
+windows like bubulles bounce
+![bubulle](assets/screens/screen_5.png)
+
+- 6
+a simple background color that fade
+![fade](assets/screens/screen_6.png)
+
+- 7
+divize the screen into multiple square at each time
+![square](assets/screens/screen_7.png)
+
+- 8
+the langton ant, an ant tha moove right or left depends on the situation
+![langton](assets/screens/screen_8.png)
+
+- 9
+a conway game of life screen
+![conway](assets/screens/screen_9.png)
+
+- 10
+the barnsley fern 'fractal'
+![barnsley](assets/screens/screen_10.png)
+
+- 11
+a square that repeat itself on its border
+![squares](assets/screens/screen_11.png)
+
 ## Config:
 
 - change the background color [all screens]
