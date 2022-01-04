@@ -28,3 +28,6 @@ jobs:
 
     - name: make clean
       run: make clean
+
+    - name: check relink
+      run: make; make
