@@ -108,3 +108,7 @@ feeel free to discuss it on github discussion.
 ## Run:
 
 `./my_screensaver -h` to get the usage message
+
+# Other
+
+if you like this, you may also like this [Julien-VIGNAU-ESPINE/-Epitech---Screensaver](https://github.com/Julien-VIGNAU-ESPINE/-Epitech---Screensaver)
