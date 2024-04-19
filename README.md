@@ -17,7 +17,7 @@ draws randomly crossed circles
 - 4
 do you remember the 'dvd' image that bounces on the screen ? the same one but with a .bmp image.
 the challenge was to retrieve pixels from a .bmp with only possibility to read the file as a "text" file
-![dvd](assets/screens/screen_4.pnn)
+![dvd](assets/screens/screen_4.png)
 
 - 5
 windows like bubulles bounce
